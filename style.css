@@ -27,6 +27,7 @@ body {
     border: 3px black solid;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -53,4 +54,5 @@ body {
 
 .matched {
     opacity: 0;
+    cursor: default;
 }

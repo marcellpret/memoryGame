@@ -26,6 +26,30 @@ const deck = [
         isFlipped: false,
     },
     {
+        name: "lucas",
+        url: "images/lucas.jpg",
+        id: 5,
+        isFlipped: false,
+    },
+    {
+        name: "lucas",
+        url: "images/lucas.jpg",
+        id: 5,
+        isFlipped: false,
+    },
+    {
+        name: "lcpret",
+        url: "images/lcpret.jpg",
+        id: 6,
+        isFlipped: false,
+    },
+    {
+        name: "lcpret",
+        url: "images/lcpret.jpg",
+        id: 6,
+        isFlipped: false,
+    },
+    {
         name: "beach",
         url: "images/beach.jpg",
         id: 1,
@@ -59,7 +83,7 @@ const layDeck = () => {
     let allTheCards = "";
 
     shuffledDeck.forEach((card) => {
-        console.log("card: ", card);
+        // console.log("card: ", card);
         allTheCards += `<div class="card ${card.name}" >
         <img class="cardImg" src=${card.url} alt=${card.name}>
         <div class="cover"></div>
@@ -74,33 +98,15 @@ layDeck();
 
 const cards = document.querySelectorAll(".card");
 const cover = document.querySelectorAll(".cover");
+const cardImg = document.querySelectorAll(".cardImg");
 
-// const reset = () => {
-//     let cardsMatched = 0;
-//     console.log("Estou rodando");
-
-//     cards.forEach((card) => {
-//         if (card.classList.contains("matched")) {
-//             cardsMatched += 1;
-//             console.log("cardsMatched: ", cardsMatched);
-//         }
-//     });
-// };
+console.log("cardImg: ", cardImg);
 
 // reset();
 
 // console.log("cards: ", cards);
-console.log("cover: ", cover);
 
-cover.forEach((cover, i) => {
-    cover.addEventListener("click", function (e) {
-        // console.log("cover: ", cover);
-        cover.classList.add("flip");
-        deck[i].isFlipped = true;
-        checkEqualCards();
-        // console.log("deck: ", deck);
-    });
-});
+console.log("cover: ", cover);
 
 let cardsMatched = 0;
 const checkEqualCards = () => {
@@ -144,13 +150,24 @@ const checkEqualCards = () => {
             setTimeout(() => {
                 cover.forEach((card) => {
                     card.classList.remove("flip");
+                    card.parentElement.children[0].classList.remove("flipImg");
                 });
                 deck.forEach((card) => (card.isFlipped = false));
                 flips = 0;
                 flippedCards = [];
-                console.log("deck: ", deck);
-                console.log("flippedCards: ", flippedCards);
+                // console.log("deck: ", deck);
+                // console.log("flippedCards: ", flippedCards);
             }, 1500);
         }
     }
 };
+
+cover.forEach((cover, i) => {
+    cover.addEventListener("click", () => {
+        cover.classList.add("flip");
+        cover.parentElement.children[0].classList.add("flipImg");
+        deck[i].isFlipped = true;
+        checkEqualCards();
+        console.log("deck: ", deck);
+    });
+});

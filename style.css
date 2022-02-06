@@ -2,57 +2,119 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 body {
     background-color: aquamarine;
     height: 100vh;
-    width: 95vw;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .table {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 2em;
     height: 100%;
     flex-wrap: wrap;
+    max-width: 1000px;
 }
 
 .card {
     width: 200px;
     height: 250px;
-    border-radius: 15px;
-    border: 3px black solid;
     position: relative;
-    overflow: hidden;
     cursor: pointer;
-}
-
-.card:hover {
-    border: 3px white solid;
+    perspective: 1000px; //Remove this if you don't want the 3D effect
+    transition: transform 500ms;
 }
 
 .cover {
     width: 100%;
     height: 100%;
-    background: brown;
+    background-image: linear-gradient(45deg, rgb(90, 83, 138), slategray);
     position: absolute;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    border-radius: 15px;
+}
+
+.cover::after {
+    content: "MG";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.513);
+    font-weight: bolder;
+    font-size: 36px;
 }
 
 .cardImg {
+    border-radius: 15px;
     width: 100%;
     height: 100%;
     position: absolute;
     object-fit: cover;
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
 .flip {
-    background-color: transparent;
+    transform: rotateY(180deg);
+}
+
+.flipImg {
+    transform: rotateY(0deg);
 }
 
 .matched {
+    transform: scale(50%);
     opacity: 0;
     cursor: default;
+    transition: all 500ms;
+}
+
+/* Welcome Modal */
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.welcome {
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 3em 6em;
+    border-radius: 15px;
+}
+
+.welcome > input {
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 2em;
+    font-size: 1.2em;
+}
+
+.play {
+    margin: 1em;
+    /* padding: 2rem; */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

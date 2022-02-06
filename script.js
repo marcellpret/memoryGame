@@ -99,8 +99,11 @@ layDeck();
 const cards = document.querySelectorAll(".card");
 const cover = document.querySelectorAll(".cover");
 const cardImg = document.querySelectorAll(".cardImg");
+const wait = document.querySelector(".wait");
 
-console.log("cardImg: ", cardImg);
+// console.log("wait: ", wait);
+
+// console.log("cardImg: ", cardImg);
 
 // reset();
 
@@ -120,6 +123,7 @@ const checkEqualCards = () => {
 
     if (flips === 2) {
         console.log("we got 2 cards");
+        wait.style.display = "block";
         deck.forEach((card) => {
             if (card.isFlipped) {
                 flippedCards.push(card);
@@ -143,6 +147,7 @@ const checkEqualCards = () => {
                         deck.forEach((card) => (card.isFlipped = false));
                         flips = 0;
                         flippedCards = [];
+                        wait.style.display = "";
                     }, 1500);
                 }
             });
@@ -155,6 +160,7 @@ const checkEqualCards = () => {
                 deck.forEach((card) => (card.isFlipped = false));
                 flips = 0;
                 flippedCards = [];
+                wait.style.display = "";
                 // console.log("deck: ", deck);
                 // console.log("flippedCards: ", flippedCards);
             }, 1500);

@@ -13,6 +13,16 @@ body {
     justify-content: center;
 }
 
+.wait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    z-index: 100;
+}
+
 .table {
     display: flex;
     justify-content: center;

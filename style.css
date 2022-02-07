@@ -9,7 +9,7 @@ body {
     background-color: aquamarine;
     height: 100vh;
     display: flex;
-    align-items: center;
+    align-content: center;
     justify-content: center;
 }
 
@@ -26,7 +26,7 @@ body {
 .table {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     gap: 2em;
     height: 100%;
     flex-wrap: wrap;
@@ -35,7 +35,7 @@ body {
 
 .card {
     width: 200px;
-    height: 250px;
+    height: 200px;
     position: relative;
     cursor: pointer;
     perspective: 1000px; //Remove this if you don't want the 3D effect
@@ -90,7 +90,7 @@ body {
     transform: scale(50%);
     opacity: 0;
     cursor: default;
-    transition: all 500ms;
+    transition: all 200ms;
 }
 
 /* Welcome Modal */
@@ -107,7 +107,8 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.welcome {
+.welcome,
+.winner {
     background-color: antiquewhite;
     text-align: center;
     padding: 3em 6em;

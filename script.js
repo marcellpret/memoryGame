@@ -95,13 +95,15 @@ const layDeck = () => {
 };
 
 layDeck();
+let startTime = new Date();
 
 const cards = document.querySelectorAll(".card");
 const cover = document.querySelectorAll(".cover");
 const cardImg = document.querySelectorAll(".cardImg");
 const wait = document.querySelector(".wait");
+const modal = document.querySelectorAll(".modal");
 
-// console.log("wait: ", wait);
+console.log("modal: ", modal[1]);
 
 // console.log("cardImg: ", cardImg);
 
@@ -131,6 +133,8 @@ const checkEqualCards = () => {
             }
         });
 
+        //Checking for a match
+
         if (flippedCards[0].name === flippedCards[1].name) {
             console.log("U found a match");
             cards.forEach((card) => {
@@ -141,7 +145,10 @@ const checkEqualCards = () => {
                         if (card.classList.contains("matched")) {
                             cardsMatched += 1;
                             if (cardsMatched === cards.length) {
-                                location.reload();
+                                modal[1].style.display = "flex";
+                                modal[1].children[0].children[0].children[0].innerText =
+                                    howLongItTook();
+                                // location.reload();
                             }
                         }
                         deck.forEach((card) => (card.isFlipped = false));
@@ -177,3 +184,19 @@ cover.forEach((cover, i) => {
         console.log("deck: ", deck);
     });
 });
+
+const winner = () => {};
+
+const howLongItTook = () => {
+    let totalTime = new Date() - startTime;
+    let totalSec = Math.floor(totalTime / 1000);
+    let min = Math.floor(totalSec / 60);
+    let sec = totalSec % 60;
+
+    const result = `${padTo2Digits(min)} min and ${padTo2Digits(sec)} sec`;
+    return result;
+};
+
+const padTo2Digits = (num) => {
+    return num.toString().padStart(2, "0");
+};

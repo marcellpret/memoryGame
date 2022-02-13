@@ -1,6 +1,6 @@
 const table = document.querySelector(".table");
 
-const deck = [
+const images = [
     {
         name: "beach",
         url: "images/beach.jpg",
@@ -32,57 +32,29 @@ const deck = [
         isFlipped: false,
     },
     {
-        name: "lucas",
-        url: "images/lucas.jpg",
-        id: 5,
-        isFlipped: false,
-    },
-    {
         name: "lcpret",
         url: "images/lcpret.jpg",
         id: 6,
-        isFlipped: false,
-    },
-    {
-        name: "lcpret",
-        url: "images/lcpret.jpg",
-        id: 6,
-        isFlipped: false,
-    },
-    {
-        name: "beach",
-        url: "images/beach.jpg",
-        id: 1,
-        isFlipped: false,
-    },
-    {
-        name: "block",
-        url: "images/block.jpg",
-        id: 2,
-        isFlipped: false,
-    },
-    {
-        name: "jumping",
-        url: "images/jumping.jpg",
-        id: 3,
-        isFlipped: false,
-    },
-    {
-        name: "people",
-        url: "images/people.jpg",
-        id: 4,
         isFlipped: false,
     },
 ];
 
-const shuffledDeck = deck.sort((a, b) => 0.5 - Math.random());
+const [easy, medium, hard] = [2, 4, 6];
 
-console.log("shuffledDeck: ", shuffledDeck);
+// const shuffledDeck = deck.sort((a, b) => 0.5 - Math.random());
 
-const layDeck = () => {
+// console.log("shuffledDeck: ", shuffledDeck);
+let deck;
+
+const layDeck = (level) => {
     let allTheCards = "";
 
-    shuffledDeck.forEach((card) => {
+    deck = [
+        ...JSON.parse(JSON.stringify(images.slice(0, level))),
+        ...JSON.parse(JSON.stringify(images.slice(0, level))),
+    ].sort((a, b) => 0.5 - Math.random());
+
+    deck.forEach((card) => {
         // console.log("card: ", card);
         allTheCards += `<div class="card ${card.name}" >
         <img class="cardImg" src=${card.url} alt=${card.name}>
@@ -94,7 +66,7 @@ const layDeck = () => {
     table.innerHTML = allTheCards;
 };
 
-layDeck();
+layDeck(medium);
 let startTime = new Date();
 
 const cards = document.querySelectorAll(".card");

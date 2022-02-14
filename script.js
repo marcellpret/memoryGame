@@ -2,38 +2,38 @@ const table = document.querySelector(".table");
 
 const images = [
     {
-        name: "beach",
-        url: "images/beach.jpg",
+        name: "gaby",
+        url: "images/gaby.png",
         id: 1,
         isFlipped: false,
     },
     {
-        name: "block",
-        url: "images/block.jpg",
+        name: "charlie",
+        url: "images/charlie.png",
         id: 2,
         isFlipped: false,
     },
     {
-        name: "jumping",
-        url: "images/jumping.jpg",
+        name: "mascha",
+        url: "images/mascha.png",
         id: 3,
         isFlipped: false,
     },
     {
-        name: "people",
-        url: "images/people.jpg",
+        name: "wordParty",
+        url: "images/wordParty.png",
         id: 4,
         isFlipped: false,
     },
     {
-        name: "lucas",
-        url: "images/lucas.jpg",
+        name: "mightyExpress",
+        url: "images/mightyExpress.png",
         id: 5,
         isFlipped: false,
     },
     {
-        name: "lcpret",
-        url: "images/lcpret.jpg",
+        name: "chico",
+        url: "images/chico.png",
         id: 6,
         isFlipped: false,
     },
@@ -45,6 +45,8 @@ const [easy, medium, hard] = [2, 4, 6];
 
 // console.log("shuffledDeck: ", shuffledDeck);
 let deck;
+let level;
+let cover;
 
 const layDeck = (level) => {
     let allTheCards = "";
@@ -66,22 +68,37 @@ const layDeck = (level) => {
     table.innerHTML = allTheCards;
 };
 
-layDeck(medium);
-let startTime = new Date();
+const wait = document.querySelector(".wait");
+const modal = document.querySelector(".modal");
+const modal2 = document.querySelector(".modal2");
+const buttonLevel = document.querySelectorAll("button");
+
+// Adding event for the buttons to call the right level
+
+buttonLevel.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        level = eval(e.target.textContent.toLowerCase());
+        console.log("level: ", level);
+        modal2.style.display = "none";
+        layDeck(level);
+        cover = document.querySelectorAll(".cover");
+        getCovers();
+        let startTime = new Date();
+    });
+});
 
 const cards = document.querySelectorAll(".card");
-const cover = document.querySelectorAll(".cover");
+// const cover = document.querySelectorAll(".cover");
 const cardImg = document.querySelectorAll(".cardImg");
-const wait = document.querySelector(".wait");
-const modal = document.querySelectorAll(".modal");
+console.log("buttonLevel: ", buttonLevel);
 
-console.log("modal: ", modal[1]);
+console.log("modal: ", modal);
 
 // console.log("cardImg: ", cardImg);
 
 // reset();
 
-// console.log("cards: ", cards);
+console.log("cards: ", cards);
 
 console.log("cover: ", cover);
 
@@ -117,8 +134,8 @@ const checkEqualCards = () => {
                         if (card.classList.contains("matched")) {
                             cardsMatched += 1;
                             if (cardsMatched === cards.length) {
-                                modal[1].style.display = "flex";
-                                modal[1].children[0].children[0].children[0].innerText =
+                                modal.style.display = "flex";
+                                modal.children[0].children[0].children[0].innerText =
                                     howLongItTook();
                                 // location.reload();
                             }
@@ -147,15 +164,17 @@ const checkEqualCards = () => {
     }
 };
 
-cover.forEach((cover, i) => {
-    cover.addEventListener("click", () => {
-        cover.classList.add("flip");
-        cover.parentElement.children[0].classList.add("flipImg");
-        deck[i].isFlipped = true;
-        checkEqualCards();
-        console.log("deck: ", deck);
+const getCovers = () => {
+    cover.forEach((cover, i) => {
+        cover.addEventListener("click", () => {
+            cover.classList.add("flip");
+            cover.parentElement.children[0].classList.add("flipImg");
+            deck[i].isFlipped = true;
+            checkEqualCards();
+            console.log("deck: ", deck);
+        });
     });
-});
+};
 
 const winner = () => {};
 

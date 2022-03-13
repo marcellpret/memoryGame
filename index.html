@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shizuru&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Memory Game</title>
 </head>
@@ -15,15 +18,19 @@
     <div class="modal2">
         <div class="welcome">
             <h1>Welcome to the Memory Board Game</h1>
-            <p>Choose the level you want to play</p>
-            <button>Easy</button>
-            <button>Medium</button>
-            <button>Hard</button>
+            <div class="levelButtons">
+                <h3>Choose the level you want to play</h3>
+                <button class="level">Easy</button>
+                <button class="level">Medium</button>
+                <button class="level">Hard</button>
+            </div>
+
         </div>
     </div>
     <div class="modal">
         <div class="winner">
             <h3>Congratulations you finished the game in <span></span></h3>
+            <button id="reset">Start again</button>
         </div>
     </div>
     <script src="script.js"></script>

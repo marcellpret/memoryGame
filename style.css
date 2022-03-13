@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: 'Shizuru', cursive;
 }
 
 body {
@@ -45,25 +45,19 @@ body {
 .cover {
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(45deg, rgb(90, 83, 138), slategray);
+    background: linear-gradient(45deg, rgb(90, 83, 138), slategray, rgb(31, 61, 91));
+    background-size: 300% 300%;
     position: absolute;
-    transition: transform 0.6s;
+    transition: transform 0.6s, background 0.3s;
     transform-style: preserve-3d;
     transform: rotateY(0deg);
     backface-visibility: hidden;
     border-radius: 15px;
 }
 
-.cover::after {
-    content: "MG";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    color: rgba(255, 255, 255, 0.513);
-    font-weight: bolder;
-    font-size: 36px;
+.cover:hover{
+        background-position: 100% 50%;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .cardImg {
@@ -123,7 +117,7 @@ body {
     background-color: antiquewhite;
     text-align: center;
     padding: 3em 6em;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .welcome > input {
@@ -133,10 +127,12 @@ body {
     font-size: 1.2em;
 }
 
-.play {
-    margin: 1em;
-    /* padding: 2rem; */
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.levelButtons{
+    margin-top: 2em;
+}
+
+.level {
+    margin: 1.5em 1em 1em 0;
+    padding: 1em 2rem;
+    border-radius: 5px;
 }

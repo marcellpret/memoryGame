@@ -47,6 +47,9 @@ const [easy, medium, hard] = [2, 4, 6];
 let deck;
 let level;
 let cover;
+let cardImg;
+let cards;
+let startTime;
 
 const layDeck = (level) => {
     let allTheCards = "";
@@ -71,25 +74,32 @@ const layDeck = (level) => {
 const wait = document.querySelector(".wait");
 const modal = document.querySelector(".modal");
 const modal2 = document.querySelector(".modal2");
-const buttonLevel = document.querySelectorAll("button");
+const buttonLevel = document.querySelectorAll(".level");
+const resetButton = document.querySelector("#reset");
 
+const reset = () => {
+    location.reload();
+};
+
+resetButton.addEventListener("click", reset);
 // Adding event for the buttons to call the right level
 
 buttonLevel.forEach((button) => {
     button.addEventListener("click", (e) => {
         level = eval(e.target.textContent.toLowerCase());
-        console.log("level: ", level);
+        // console.log("level: ", level);
         modal2.style.display = "none";
         layDeck(level);
         cover = document.querySelectorAll(".cover");
         getCovers();
-        let startTime = new Date();
+        cardImg = document.querySelectorAll(".cardImg");
+        cards = document.querySelectorAll(".card");
+
+        startTime = new Date();
     });
 });
 
-const cards = document.querySelectorAll(".card");
 // const cover = document.querySelectorAll(".cover");
-const cardImg = document.querySelectorAll(".cardImg");
 console.log("buttonLevel: ", buttonLevel);
 
 console.log("modal: ", modal);
@@ -171,7 +181,7 @@ const getCovers = () => {
             cover.parentElement.children[0].classList.add("flipImg");
             deck[i].isFlipped = true;
             checkEqualCards();
-            console.log("deck: ", deck);
+            // console.log("deck: ", deck);
         });
     });
 };
@@ -179,12 +189,18 @@ const getCovers = () => {
 const winner = () => {};
 
 const howLongItTook = () => {
+    let result;
     let totalTime = new Date() - startTime;
     let totalSec = Math.floor(totalTime / 1000);
     let min = Math.floor(totalSec / 60);
     let sec = totalSec % 60;
 
-    const result = `${padTo2Digits(min)} min and ${padTo2Digits(sec)} sec`;
+    if (min < 1) {
+        result = `${padTo2Digits(sec)} sec`;
+    } else {
+        result = `${padTo2Digits(min)} min and ${padTo2Digits(sec)} sec`;
+    }
+
     return result;
 };
 
